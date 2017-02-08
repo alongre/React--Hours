@@ -1,3 +1,3 @@
 export { App } from './app/app';
-export { Hours } from './hours/hours'
+export { Hours } from './hours/hours';
 
