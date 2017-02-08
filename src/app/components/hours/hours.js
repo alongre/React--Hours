@@ -5,7 +5,7 @@ import { Form, FormGroup, Label, FormControl, ControlLabel } from 'react-bootstr
 export const Hours = () => {
   return  (
     h(FormGroup, [
-      h(ControlLabel, {'bsStyle': 'primary'}, ['Start']),
+      h(Label, {bsStyle: 'primary'}, ['Start:']),
       h(Label,' '),
       h(FormControl, { type: 'time', defaultValue: '08:00'}),
       h(Label,' '),
