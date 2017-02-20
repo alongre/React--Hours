@@ -1,6 +1,6 @@
 import h from 'react-hyperscript';
 import { PropTypes } from 'react';
-import { Form, FormGroup, Label, FormControl, Accordion, Panel, Col, Row, Button, Checkbox } from 'react-bootstrap';
+import { Form, FormGroup, Label, FormControl, Accordion, Panel, Col, Row, Button, ButtonGroup, Checkbox } from 'react-bootstrap';
 import './hours.scss';
 
 export const Hours = ({ Shift }) => {
@@ -20,19 +20,32 @@ export const Hours = ({ Shift }) => {
                     h(FormControl, { type: 'time', defaultValue: shift.Start, bsSize: 'md' }),
                   ]),
                 ]),
+                h(Label, { className: 'label_transparent' }, ' '),
                 h(FormGroup, { controlId: '2' }, [
-                  h(Col, { sm: 12 }, [
+                  h(Col, [
                     h(Label, { bsStyle: 'primary', className: 'labels' }, 'End:'),
                   ]),
-                  h(Col, { sm: 12 }, [
+                  h(Col, [
                     h(FormControl, { type: 'time', defaultValue: shift.End, bsSize: 'md' }),
+                  ]),
+                ]),
+                h(Label, { className: 'label_transparent' }, ' '),
+                h(FormGroup, { controlId: '3' }, [
+                  h(Col, [
+                    h(Label, { bsStyle: 'primary', className: 'labels' }, 'Comments:'),
+                  ]),
+                  h(Col, [
+                    h(FormControl, { type: 'text', label: 'Comments', bsSize: 'lg' }),
                   ]),
                 ]),
               ]),
             ]),
           ])
         )]),
-        h(Button, { className: 'buttonAdd' }, 'Add'),
+        h(ButtonGroup, [
+          h(Button, { className: 'buttonAdd' }, '+'),
+          h(Button, { className: 'buttonAdd', disabled: true }, '-'),
+        ]),
       ]),
     ]));
 };
