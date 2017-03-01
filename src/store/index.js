@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducer';
+import * as dataAction from '../data/actions';
 import saga from './saga';
 
 const loggerMiddleware = createLogger({
@@ -24,5 +25,8 @@ const middleware = applyMiddleware(
 const store = createStore(reducer, composeWithDevTools(middleware));
 
 sagaMiddleware.run(saga);
+
+store.dispatch(dataAction.initShifts());
+
 
 export default store;
