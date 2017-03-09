@@ -12,6 +12,16 @@ export const Shifts = (state = [], action) => {
    }
 };
 
+export const Days = (state = [], action) => {
+    switch (action.type) {
+      case actions.ADD_DAY:
+        debugger;
+        return [...state,action.payload];
+     default:
+       return state;
+   }
+};
+
 // export const addShift = (state = [], action) => {
     
 //     switch(action.type) {
@@ -27,4 +37,5 @@ export const Shifts = (state = [], action) => {
 
 export default combineReducers({
     Shifts,
+    Days,
 });

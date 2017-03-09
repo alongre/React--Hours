@@ -1,13 +1,13 @@
 import h from 'react-hyperscript';
 import React from 'react';
-import Hours from '../hours/hours';
+import Month from '../month/month';
 
 export class App extends React.Component {
  
   render() {
     return h('.app', [
       h('h1', 'React-Hours'),
-      h(Hours),
+      h(Month),
         
     ]);
   };
