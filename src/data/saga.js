@@ -9,7 +9,6 @@ export function* fetchMockData() {
   debugger;
   yield days.map(day => put(actions.addDay(day)));
 }
-
  
 export default function* saga() {
   yield [

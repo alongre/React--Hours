@@ -22,6 +22,15 @@ export const Days = (state = [], action) => {
    }
 };
 
+export const Month = (state = [], action) => {
+  switch (action.type) {
+    case actions.ADD_MONTH:
+      return [...state,action.payload];
+    default: 
+      return state;  
+  }
+}
+
 // export const addShift = (state = [], action) => {
     
 //     switch(action.type) {

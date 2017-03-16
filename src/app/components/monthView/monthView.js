@@ -1,25 +1,16 @@
-'use strict';
 import h from 'react-hyperscript';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
- import { Table, FormControl } from 'react-bootstrap';
-import Day from '../day/day';
+import { Table, FormControl } from 'react-bootstrap';
+import Day from '../dayView/day';
+import Month from './month';
 
 
- var products = [{
-      id: 1,
-      name: "Product1",
-      price: 120
-  }, {
-      id: 2,
-      name: "Product2",
-      price: 80
-  }];
-
-
-class Month extends React.Component {
+class MonthView extends React.Component {
     constructor(props) {
         super(props);
+        const date = new Date();
+        this._month = new Month(date.getMonth(),date.getFullYear());
         this.getDaysInMonth = this.getDaysInMonth.bind(this);
         debugger;
 
@@ -75,14 +66,14 @@ class Month extends React.Component {
 }
 
 Month.propTypes = {
-    Days: PropTypes.arrayOf(Day).isRequired,
+    Month: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
     debugger;
     return {
-        Days: state.data.Days,
+        Month: state.data.Month,
     }
 }
 
-export default connect(mapStateToProps)(Month);
+export default connect(mapStateToProps)(MonthView);
