@@ -1,0 +1,1 @@
+export const DEFAULT_REQUIERD_HOURS = 9;

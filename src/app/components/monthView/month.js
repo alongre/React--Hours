@@ -1,54 +1,62 @@
-import Day from '../dayView/day';
+import _ from 'lodash';
+import { Day } from '../dayView/day';
+import * as Constants from '../../constants';
 
 export class Month {
-    constructor(month,year) {
-        this._month = month;
-        this._year = year;
-        this._date = new Date(year,month);
-        this._workDays = workDays();
-       
-    }
+  constructor(month, year) {
+    debugger;
+    this._month = month;
+    this._year = year;
+    this._date = new Date(year, month);
+    this._workDays = this.workDays();
+  }
 
-    /**Properties */
-    get daysCountInMonth() {
-        return new Date(this._year,this._month + 1,0).getDate();
+    /** Properties */
+    /** get the number of days in a month*/
+  get daysCountInMonth() {
+    return new Date(this._year, this._month + 1, 0).getDate();
+  }
+    /** Get the working and off days of the selected month */
+  workDays() {
+    const workingDays = new Array(this.daysCountInMonth);
+    const workingHours = Constants.DEFAULT_REQUIERD_HOURS;
+    for (let i = 0; i < workingDays.length; i += 1) {
+      const day = new Day(new Date(this._year, this._month, i + 1, 0, 0, 0, 0), workingHours);
+      workingDays[i] = {
+        day,
+      };
     }
-    /**Get the working and off days of the selected month */
-    workDays(){
-        let workingDays = new Array(daysCountInMonth());
-        for (let i = 0;i < workingDays.length; i++) {
-            let day = new Day(new Date(this._year,this._month + 1,i),9);
-            workingDays[i] = {
-                day: (i+1) + '.' + (this._month+1) + "." + this._year,
-                isWorkingDay = day.isWorkingDay(this._year,this._month,i),
-            }
-        }
+    return workingDays;
+  }
 
-    }
-    getCurrentMonth = () => {
-     const date = new Date();
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        const days = new Date(year,month + 1,0).getDate();
-        var array = new Array(days);
-        var index = 1;
-        for (var i =0 ;i < days ; i++){
-            array[i] = (i+1) + '.' + (month+1) + "." + year; 
-        }
-    }
-
-    static getCurrentMonth() {
-        return new Date().getMonth();
-    }
-    static getCurrentYear() {
-        return new Date().getFullYear();
-    }
-    static getDaysInCurrentMonth() {
-        const date = new Date();
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        return new Date(this.year,this.month + 1,0).getDate();
-    }
-
-
+  get Days() {
+    debugger;  
+    return this._workDays;
+  }
+  /** get day according to te date */
+  getDay(date) {
+    const idx = _.findIndex(this._workDays, (day) => {
+      return day.dateToString === date;
+    });
+    return this._workDays[idx];
+  }
+  /** Update day according to the date */
+  updateDay(newDay) {
+    const idx = _.findIndex(this._workDays, (day) => {
+      return day.dateToString === newDay.dateToString;
+    });
+    this._workDays[idx] = newDay;
+  }
+  static getCurrentMonth() {
+    return new Date().getMonth();
+  }
+  static getCurrentYear() {
+    return new Date().getFullYear();
+  }
+  static getDaysCountInCurrentMonth() {
+    const date = new Date();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    return new Date(year, month + 1, 0).getDate();
+  }
 }

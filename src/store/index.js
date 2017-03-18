@@ -26,7 +26,7 @@ const store = createStore(reducer, composeWithDevTools(middleware));
 
 sagaMiddleware.run(saga);
 
-store.dispatch(dataAction.initDays());
+store.dispatch(dataAction.initMonth());
 
 
 export default store;

@@ -1,14 +1,12 @@
 import h from 'react-hyperscript';
 import React from 'react';
-import Month from '../month/month';
+import MonthView from '../monthView/monthView';
 
 export class App extends React.Component {
- 
   render() {
     return h('.app', [
       h('h1', 'React-Hours'),
-      h(Month),
-        
+      h(MonthView),
     ]);
   };
 };

@@ -1,7 +1,5 @@
-//import App from './app/app';
-
-export { month } from './monthView/month';
-export { day } from './dayView/day';
+export { Month } from './monthView/month';
+export { Day } from './dayView/day';
 
 export { App } from './app/app';
 
