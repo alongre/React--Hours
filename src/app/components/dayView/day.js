@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { format, getDaysInMonth, getDay, isFriday, isSaturday, getDate, getYear, getMonth, parse } from 'date-fns';
 import Shift from './shift';
 
 /** Day name enum */
@@ -20,11 +21,13 @@ export class Day {
      * @param {*required hours to work in day} requiredHours
     */
   constructor(date, requiredHours) {
+      debugger;
     this._requiredHours = requiredHours;
-    this._date = new Date(date);
-    this._year = this._date.getFullYear();
-    this._month = this._date.getMonth();
-    this._dayNum = this._date.getDay();
+    this._date = parse(date);
+    this._year = getYear(this._date);
+    this._month = getMonth(this._date);
+    this._dayInWeek = getDay(this._date);
+    this._dayInMonth = getDate(this._date);
     this._dayName = this.setDayName();
     this._hoursCompleted = 0;
     this._isWorkingDay = this.isWorkingDay;
@@ -35,7 +38,7 @@ export class Day {
     return _.sumBy(this._shifts, (shift) => { return shift.totalHours; });
   }
   get isWorkingDay() {
-    if (this._dayNum === DayName.Friday || this._dayNum === DayName.Saterday) {
+    if (isFriday(this._date) || isSaturday(this._date)) {
       return false;
     }
     if (this._isWorkingDay === undefined) {
@@ -44,7 +47,7 @@ export class Day {
     return this._isWorkingDay;
   }
   get dateToString() {
-    return `${this._dayNum + 1}.${this._month + 1}.${this._year}`;
+    return `${this._dayInMonth}/${this._month + 1}/${this._year}`;
   }
 
   set isWorkingDay(newValue) {
@@ -66,7 +69,7 @@ export class Day {
     }
   }
   setDayName() {
-    switch (this._dayNum) {
+    switch (this._dayInWeek) {
       case DayName.Sunday:
         return 'Sunday';
       case DayName.Monday:

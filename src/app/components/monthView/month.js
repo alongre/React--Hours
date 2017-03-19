@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { format, getDaysInMonth } from 'date-fns';
 import { Day } from '../dayView/day';
 import * as Constants from '../../constants';
 
@@ -7,7 +8,7 @@ export class Month {
     debugger;
     this._month = month;
     this._year = year;
-    this._date = new Date(year, month);
+    this._date = format(new Date(year, month, 1), 'DD/MM/YYYY');
     this._workDays = this.workDays();
   }
 
@@ -21,7 +22,7 @@ export class Month {
     const workingDays = new Array(this.daysCountInMonth);
     const workingHours = Constants.DEFAULT_REQUIERD_HOURS;
     for (let i = 0; i < workingDays.length; i += 1) {
-      const day = new Day(new Date(this._year, this._month, i + 1, 0, 0, 0, 0), workingHours);
+      const day = new Day(format(new Date(this._year, this._month, i + 1), 'YYYY/MM/DD'), workingHours);
       workingDays[i] = {
         day,
       };
@@ -30,7 +31,6 @@ export class Month {
   }
 
   get Days() {
-    debugger;  
     return this._workDays;
   }
   /** get day according to te date */
@@ -57,6 +57,6 @@ export class Month {
     const date = new Date();
     const month = date.getMonth();
     const year = date.getFullYear();
-    return new Date(year, month + 1, 0).getDate();
+    return getDaysInMonth(new Date(year, month));
   }
 }

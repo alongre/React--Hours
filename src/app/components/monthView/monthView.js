@@ -9,11 +9,10 @@ import { Month } from './month';
 class MonthView extends React.Component {
   constructor(props) {
     super(props);
-    this._month = this.props.Month;
-    this.daysArray = this.props.Month._workDays;
     debugger;
   }
   render() {
+    debugger;
     return (
             h('.month', [
               h(Table, { striped: true, bordered: true, condensed: true, hover: true }, [
@@ -26,10 +25,10 @@ class MonthView extends React.Component {
                     h('th', 'Total'),
                   ]),
                 ]),
-                h('tbody', [this._month._workDays.map(day =>
+                h('tbody', [this.props.Days.map(obj =>
                         h('tr', [
-                          h('td', day.dateToString),
-                          h('td', day.dayName),
+                          h('td', obj.day.dateToString),
+                          h('td', obj.day.dayName),
                           h('td', [
                             h(FormControl, { type: 'time', defaultValue: '08:00', bsSize: 'md' }),
                           ]),
@@ -46,13 +45,14 @@ class MonthView extends React.Component {
 }
 
 MonthView.propTypes = {
+  Days: PropTypes.arrayOf(Day),
   Month: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  debugger;
+const mapStateToProps = (state) => {
   return {
-    Month: state.data.Month,
+    Month: state.data.Month[0],
+    Days: state.data.Month[0].Days,
   };
 };
 
