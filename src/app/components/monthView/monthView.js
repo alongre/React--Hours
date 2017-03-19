@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Table, FormControl } from 'react-bootstrap';
 import { Day } from '../dayView/day';
-import { Month } from './month';
+import './monthView.scss';
 
 
 class MonthView extends React.Component {
@@ -15,7 +15,7 @@ class MonthView extends React.Component {
     debugger;
     return (
             h('.month', [
-              h(Table, { striped: true, bordered: true, condensed: true, hover: true }, [
+              h(Table, { striped: false, bordered: true, condensed: true, hover: true }, [
                 h('thead', [
                   h('tr', [
                     h('th', { width: '50px' }, 'Date'),
@@ -26,8 +26,8 @@ class MonthView extends React.Component {
                   ]),
                 ]),
                 h('tbody', [this.props.Days.map(obj =>
-                        h('tr', [
-                          h('td', obj.day.dateToString),
+                        h('tr', { className: 'table-row' }, [
+                          h('td', { className: 'table-column' }, obj.day.dateToString),
                           h('td', obj.day.dayName),
                           h('td', [
                             h(FormControl, { type: 'time', defaultValue: '08:00', bsSize: 'md' }),
