@@ -8,4 +8,10 @@ export default class Shift {
     const end = parseInt(this._end, 10);
     return end - start;
   }
+  get start() {
+    return this._start;
+  }
+  get end() {
+    return this._end;
+  }
 }

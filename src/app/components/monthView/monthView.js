@@ -1,7 +1,7 @@
 import h from 'react-hyperscript';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Table, FormControl, Checkbox, Label } from 'react-bootstrap';
+import { Table, FormControl, Checkbox, Label, Pager } from 'react-bootstrap';
 
 import { Day } from '../dayView/day';
 import './monthView.scss';
@@ -24,6 +24,11 @@ class MonthView extends React.Component {
                     h('th', { width: '50px' }, 'Day'),
                     h('th', { width: '50px' }, 'Start'),
                     h('th', { width: '50px' }, 'End'),
+                    h('th', { width: '50px' }, 'Start'),
+                    h('th', { width: '50px' }, 'End'),
+                    h('th', { width: '50px' }, 'Start'),
+                    h('th', { width: '50px' }, 'End'),
+                    h('th', { width: '350px' }, 'Comment'),
                     h('th', 'Total'),
                   ]),
                 ]),
@@ -38,10 +43,25 @@ class MonthView extends React.Component {
                             h(Label, { className: 'Label' }, obj.day.dayName),
                           ]),
                           h('td', [
-                            h(FormControl, { type: 'time', defaultValue: '08:00', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                            h(FormControl, { type: 'time', defaultValue: `${obj.day.Shifts[0].start}`, bsSize: 'md', disabled: !obj.day.isWorkingDay }),
                           ]),
                           h('td', [
-                            h(FormControl, { type: 'time', defaultValue: '17:00', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                            h(FormControl, { type: 'time', defaultValue: `${obj.day.Shifts[0].end}`, bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                          ]),
+                          h('td', [
+                            h(FormControl, { type: 'time', defaultValue: '', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                          ]),
+                          h('td', [
+                            h(FormControl, { type: 'time', defaultValue: '', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                          ]),
+                          h('td', [
+                            h(FormControl, { type: 'time', defaultValue: '', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                          ]),
+                          h('td', [
+                            h(FormControl, { type: 'time', defaultValue: '', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
+                          ]),
+                          h('td', [
+                            h(FormControl, { type: 'input', bsSize: 'md', disabled: !obj.day.isWorkingDay }),
                           ]),
                           h('td', '9:00'),
                         ])),

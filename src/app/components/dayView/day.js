@@ -21,7 +21,6 @@ export class Day {
      * @param {*required hours to work in day} requiredHours
     */
   constructor(date, requiredHours) {
-      debugger;
     this._requiredHours = requiredHours;
     this._date = parse(date);
     this._year = getYear(this._date);
@@ -31,7 +30,12 @@ export class Day {
     this._dayName = this.setDayName();
     this._hoursCompleted = 0;
     this._isWorkingDay = this.isWorkingDay;
-    this._shifts = [];
+
+    this.Shifts = [
+      new Shift('08:00', '17:00'),
+      new Shift(undefined, undefined),
+      new Shift(undefined, undefined),
+    ];
   }
     /** Properties */
   get hoursCompleted() {
