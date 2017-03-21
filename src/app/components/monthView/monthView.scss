@@ -2,6 +2,27 @@
   vertical-align: text-bottom;
   text-align: left;
  }
- .table-row {
-     background-color: slategrey;
+ .table-row-work-days {
+    align-content: center;
+    align-items: center;
  }
+ .table-row-off-days {
+   background-color: gray;
+   align-content: center;
+   align-items: center;
+   align-self: center;
+ }
+ 
+ .table-title {
+  text-align: center;
+ }
+ .Label {
+  background-color: transparent;
+  color: black;
+  align-items: center;
+   align-self: center;
+  align-content: center;
+  font-size: 14px;
+
+  
+}
