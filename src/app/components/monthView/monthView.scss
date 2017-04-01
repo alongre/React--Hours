@@ -1,33 +1,23 @@
-.table-column {
-  vertical-align: text-bottom;
-  text-align: left;
- }
- .table-row-work-days {
-    align-content: center;
-    align-items: center;
-    padding: 50px;
-    margin-top: 50px;
-    align-self: center;
- }
- .table-row-off-days {
+.month {
+  thead {
+    color: blue;
+    th {
+      text-align: center !important;
+    }
+  }
+  tbody {
+    vertical-align: middle;
+  }
+}
+.table-row-off-days {
    background-color: lightgray;
-   align-content: center;
-   align-items: center;
-   align-self: center;
  }
- 
- .table-title {
-  text-align: center;
- }
- .Label {
+.table td {
+  vertical-align: middle !important;
+}
+.Label {
   background-color: transparent;
   color: black;
-  align-items: center;
-  align-self: center;
-  align-content: center;
   font-size: 14px;
-  vertical-align: text-bottom;
-  text-align: left;
-
-  
+  vertical-align: middle;
 }

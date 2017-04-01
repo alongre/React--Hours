@@ -1,24 +1,24 @@
 import h from 'react-hyperscript';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Table, FormControl, Checkbox, Label, Pager } from 'react-bootstrap';
+import { Table, FormControl, Checkbox, Label, Col } from 'react-bootstrap';
 
 import { Day } from '../dayView/day';
 import './monthView.scss';
 
+const grayOffDays = (day) => {
+  if (day.isWorkingDay) {
+    return 'table-row-work-days';
+  }
+  return 'table-row-off-days';
+};
 
 class MonthView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.grayOffDays = this.grayOffDays.bind(this);
-    debugger;
-  }
   render() {
-    debugger;
     return (
             h('.month', [
               h(Table, { striped: false, bordered: true, condensed: true, hover: false }, [
-                h('thead', { className: 'table-title' }, [
+                h('thead', [
                   h('tr', [
                     h('th', { width: '50px' }, 'Date'),
                     h('th', { width: '50px' }, 'Day'),
@@ -28,19 +28,21 @@ class MonthView extends React.Component {
                     h('th', { width: '50px' }, 'End'),
                     h('th', { width: '50px' }, 'Start'),
                     h('th', { width: '50px' }, 'End'),
-                    h('th', { width: '350px' }, 'Comment'),
+                    h('th', { width: '500px' }, 'Comment'),
                     h('th', 'Total'),
                   ]),
                 ]),
                 h('tbody', [this.props.Days.map(obj =>
-                        h('tr', { className: this.grayOffDays(obj.day) }, [
+                        h('tr', { className: grayOffDays(obj.day) }, [
                           h('td', [
                             h(Checkbox, [
                               h(Label, { className: 'Label' }, obj.day.dateToString),
                             ]),
                           ]),
                           h('td', [
-                            h(Label, { className: 'Label' }, obj.day.dayName),
+                            h(Col, [
+                              obj.day.dayName,
+                            ]),
                           ]),
                           h('td', [
                             h(FormControl, { type: 'time', defaultValue: `${obj.day.Shifts[0].start}`, bsSize: 'md', disabled: !obj.day.isWorkingDay }),
@@ -70,14 +72,8 @@ class MonthView extends React.Component {
             ])
         );
   }
-  grayOffDays(day) {
-    if (day.isWorkingDay) {
-      return 'table-row-work-days';
-    }
-    return 'table-row-off-days';
-  }
 }
-
+//
 MonthView.propTypes = {
   Days: PropTypes.arrayOf(Day),
   Month: PropTypes.object.isRequired,

@@ -10,7 +10,7 @@ export const DayName = {
   Wednesday: 3,
   Thursday: 4,
   Friday: 5,
-  Saterday: 6,
+  Saturday: 6,
 };
 /**
  * Create new instance of day
@@ -86,8 +86,8 @@ export class Day {
         return 'Thursday';
       case DayName.Friday:
         return 'Friday';
-      case DayName.Saterday:
-        return 'Saterday';
+      case DayName.Saturday:
+        return 'Saturday';
       default:
         return '';
     }
